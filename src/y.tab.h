@@ -45,11 +45,10 @@
      COLCHETEF = 261,
      NUMERO = 262,
      COMMA = 263,
-     WS = 264,
-     COLON = 265,
-     STRING = 266,
-     WORD = 267,
-     EOL = 268
+     COLON = 264,
+     STRING = 265,
+     WORD = 266,
+     EOL = 267
    };
 #endif
 /* Tokens.  */
@@ -59,11 +58,10 @@
 #define COLCHETEF 261
 #define NUMERO 262
 #define COMMA 263
-#define WS 264
-#define COLON 265
-#define STRING 266
-#define WORD 267
-#define EOL 268
+#define COLON 264
+#define STRING 265
+#define WORD 266
+#define EOL 267
 
 
 

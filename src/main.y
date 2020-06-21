@@ -5,27 +5,32 @@
 #include <stdlib.h>
 void yyerror(char *c);
 int yylex(void);
-int erro = 0;
+int error = 1;
 %}
 
-%token CHAVEA CHAVEF COLCHETEA COLCHETEF NUMERO COMMA WS COLON STRING WORD EOL
+%token CHAVEA CHAVEF COLCHETEA COLCHETEF NUMERO COMMA COLON STRING WORD EOL
 
 %%
 
 OBJETO:
-      CHAVEA MEMBROS CHAVEF {printf("VALIDO\n");}
-      |
+      CHAVEA MEMBROS CHAVEF { error = 0;
+                              return 0;
+                            }
       ;
 
 MEMBROS:
         MEMBRO
-        | MEMBRO COMMA MEMBRO
+        | MEMBRO COMMA MEMBROS
         ;
 
 MEMBRO:
-      STRING WS COLON WS VALOR
-      |
+      STRING COLON ELEMENTO
+      | STRING COLON ELEMENTO EOL
       ;
+
+ELEMENTO:
+        VALOR
+        ;
 
 VALOR:
       OBJETO
@@ -35,29 +40,27 @@ VALOR:
       ;
 
 ARRAY:
-      COLCHETEA WS COLCHETEF
+      COLCHETEA COLCHETEF
       | COLCHETEA ELEMENTOS COLCHETEF
       ;
 
 ELEMENTOS:
-          VALOR
-          | VALOR COMMA VALOR
+          ELEMENTO
+          | ELEMENTO COMMA ELEMENTOS
           ;
 
 %%
 
 void yyerror(char *s) {
-  erro = 1;
   printf("INVALIDO\n");
 }
 
 int main() {
-  yyparse();
-    if (erro==0){
-      printf("VALIDO\n");
-      erro = 0;
-    }
+    yyparse();
 
+    if (error == 0){
+      printf("VALIDO\n");
+    }
     return 0;
 
 }
