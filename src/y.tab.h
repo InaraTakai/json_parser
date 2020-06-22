@@ -46,9 +46,7 @@
      NUMERO = 262,
      COMMA = 263,
      COLON = 264,
-     STRING = 265,
-     WORD = 266,
-     EOL = 267
+     STRING = 265
    };
 #endif
 /* Tokens.  */
@@ -60,8 +58,6 @@
 #define COMMA 263
 #define COLON 264
 #define STRING 265
-#define WORD 266
-#define EOL 267
 
 
 
